@@ -12,6 +12,6 @@ do
         if [ ! -e ${strarr[0]} ]; then
             mkdir ${strarr[0]}
         fi
+        mv *.${file_types[@]} ${file_types[@]}/
     fi
 done
-
