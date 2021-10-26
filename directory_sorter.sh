@@ -4,14 +4,16 @@ IFS='.'
 
 declare -a file_types
 
-for line in $(ls -l);
+files_current_dir=$(pwd)/*
+
+for file_name in $files_current_dir;
 do
-    if [[ $line != *"total "* ]]; then
-        read -a strarr <<< $line
-        read -a file_types <<< ${strarr[0]}
-        if [ ! -e ${strarr[0]} ]; then
-            mkdir ${strarr[0]}
-        fi
+    read -a strarr <<< $file_name
+    read -a file_types <<< ${strarr[1]}
+    if [ ! -e ${strarr[1]} ]; then
+        mkdir ${strarr[1]}        
+    fi
+    if [[ -e $file_name ]]; then
         mv *.${file_types[@]} ${file_types[@]}/
     fi
 done
